@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABC Training Institute — Student Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="masthead" id="top">
+  <div class="masthead-inner">
+    <div class="seal">AT</div>
+    <div class="masthead-text">
+      <div class="eyebrow">Est. Registrar's Office</div>
+      <h1>ABC Training Institute</h1>
+      <div class="tagline">Enrollment &amp; Records — Student Course Registration</div>
+    </div>
+  </div>
+</header>
+
+<nav class="menu">
+  <ul>
+    <li><a href="#top">Home</a></li>
+    <li><a href="#register">Register</a></li>
+    <li><a href="#roster">Roster</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="intro" id="register">
+    <div class="kicker">Form 01 — New Enrollment</div>
+    <h2>Register for a course</h2>
+    <p>Fill in your details below. Fields marked <strong style="color:var(--rust)">*</strong> are required. Once submitted, your entry is added to the roster instantly — no page reload needed.</p>
+  </section>
+
+  <div class="card">
+    <div class="card-header">
+      <h3>Student Registration Form</h3>
+      <span class="form-id">FORM/REG/2026</span>
+    </div>
+
+    <form id="regForm" novalidate>
+
+      <div class="field">
+        <label for="fullName"><span class="idx">01</span> Full Name <span class="req">*</span></label>
+        <input type="text" id="fullName" name="fullName" placeholder="e.g. Arun Kumar" autocomplete="name">
+        <div class="error-msg" id="err-fullName"></div>
+      </div>
+
+      <div class="field">
+        <label for="email"><span class="idx">02</span> Email <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email">
+        <div class="error-msg" id="err-email"></div>
+      </div>
+
+      <div class="field">
+        <label for="mobile"><span class="idx">03</span> Mobile Number <span class="req">*</span></label>
+        <input type="tel" id="mobile" name="mobile" placeholder="10-digit number" autocomplete="tel" maxlength="10">
+        <div class="error-msg" id="err-mobile"></div>
+      </div>
+
+      <div class="field">
+        <label for="dob"><span class="idx">04</span> Date of Birth <span class="req">*</span></label>
+        <input type="date" id="dob" name="dob">
+        <div class="error-msg" id="err-dob"></div>
+      </div>
+
+      <div class="field">
+        <label><span class="idx">05</span> Gender <span class="req">*</span></label>
+        <fieldset>
+          <legend style="position:absolute;left:-9999px;">Gender</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="gender" value="Male"> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Other"> Other</label>
+          </div>
+        </fieldset>
+        <div class="error-msg" id="err-gender"></div>
+      </div>
+
+      <div class="field">
+        <label for="department"><span class="idx">06</span> Department <span class="req">*</span></label>
+        <select id="department" name="department">
+          <option value="">Select department</option>
+          <option value="CSE">CSE</option>
+          <option value="IT">IT</option>
+          <option value="ECE">ECE</option>
+          <option value="EEE">EEE</option>
+          <option value="MECH">MECH</option>
+          <option value="CIVIL">CIVIL</option>
+        </select>
+        <div class="error-msg" id="err-department"></div>
+      </div>
+
+      <div class="field">
+        <label for="course"><span class="idx">07</span> Course <span class="req">*</span></label>
+        <select id="course" name="course">
+          <option value="">Select course</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Artificial Intelligence">Artificial Intelligence</option>
+          <option value="Data Science">Data Science</option>
+          <option value="Cloud Computing">Cloud Computing</option>
+          <option value="Cybersecurity">Cybersecurity</option>
+        </select>
+        <div class="error-msg" id="err-course"></div>
+      </div>
+
+      <div class="field full">
+        <label><span class="idx">08</span> Skills</label>
+        <fieldset>
+          <legend style="position:absolute;left:-9999px;">Skills</legend>
+          <div class="checkbox-row">
+            <label><input type="checkbox" name="skills" value="HTML/CSS"> HTML/CSS</label>
+            <label><input type="checkbox" name="skills" value="JavaScript"> JavaScript</label>
+            <label><input type="checkbox" name="skills" value="Python"> Python</label>
+            <label><input type="checkbox" name="skills" value="SQL"> SQL</label>
+            <label><input type="checkbox" name="skills" value="Java"> Java</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="field full">
+        <label for="address"><span class="idx">09</span> Address <span class="req">*</span></label>
+        <textarea id="address" name="address" placeholder="House no, street, city, state, PIN"></textarea>
+        <div class="error-msg" id="err-address"></div>
+      </div>
+
+      <div class="toast ok" id="successToast">✓ Registration recorded — added to the roster below.</div>
+
+      <div class="form-actions">
+        <button type="submit" class="primary">Submit Registration</button>
+        <button type="reset" class="ghost" id="resetBtn">Reset Form</button>
+      </div>
+    </form>
+  </div>
+
+  <section class="roster" id="roster">
+    <div class="roster-head">
+      <h3>Registered Students</h3>
+      <span class="roster-count" id="rosterCount">0 entries</span>
+    </div>
+    <div class="ledger-wrap">
+      <table class="ledger">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>Department</th>
+            <th>Contact</th>
+            <th>Skills</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="rosterBody">
+          <tr class="empty-row">
+            <td colspan="7">No students registered yet. Submit the form above to add the first entry.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <div class="brand">ABC Training Institute</div>
+      <div>Registrar's Office · Enrollment Records</div>
+    </div>
+    <div>
+      <div>registrar@abctraining.edu</div>
+      <div>&copy; 2026 ABC Training Institute. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
